@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   
   resources :states do
     member do 
-      resources :city, only: %i[index] 
+      resources :cities, only: %i[index]      # '/states/:state_id/cities
     end
   end
 end
