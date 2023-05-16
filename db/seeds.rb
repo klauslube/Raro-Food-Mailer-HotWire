@@ -14,5 +14,6 @@ User.create(name: "Rita", cpf: "12378945612", email: "rita@gmail.com", password:
 
 Administrator.create(user_id: 1)
 
-Chef.create(user_id: 3,address_id: 2,approver_id: 1)
+Chef.create(user_id: 2,address_id: 2,approver_id: 1)
+Chef.create(user_id: 3, address_id: 2, approver_id: 1)
 
