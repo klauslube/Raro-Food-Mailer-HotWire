@@ -7,6 +7,12 @@ class CitiesController < ApplicationController
     render json: @cities
   end
 
+  def show_chef_city
+    @chef = Chef.find(params[:id])
+    @city = @chef.city
+    render json: @city
+  end
+
   private
 
   def fetch_state
