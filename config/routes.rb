@@ -5,14 +5,14 @@ Rails.application.routes.draw do
     member do
       resource :address, only: %i[show]       # '/chefs/:chef_id/address'
       resource :city, only: %i[show]          # '/chefs/:chef_id/city'  
-      resource :state, only: %i[show]         # '/chefs/:chef_id/state'
+      resource :state, only: %i[show], to: 'states#show_chef_state'         # '/chefs/:chef_id/state'
       resources :telephones, only: %i[index]  # '/chefs/:chef_id/telephones'
       resources :dishes, only: %i[index]      # '/chefs/:chef_id/dishes'
     end
   end
   
   resources :states do
-    member do 
+    member do
       resources :cities, only: %i[index]      # '/states/:state_id/cities
     end
   end
