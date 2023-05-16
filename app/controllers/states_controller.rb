@@ -11,6 +11,12 @@ class StatesController < ApplicationController
     render json: @state
   end
 
+  def show_chef_state
+    @chef = Chef.find(params[:id])
+    @state = @chef.state
+    render json: @state
+  end
+
   def new
     @state = State.new
   end
