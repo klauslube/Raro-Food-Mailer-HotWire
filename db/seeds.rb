@@ -1,21 +1,18 @@
-# frozen_string_literal: true
+State.create(name: "São Paulo", acronym: "SP")
+State.create(name: "Rio de Janeiro", acronym: "RJ")
 
-filepath = ENV.fetch('FILEPATH', Rails.root.join('db/states_cities.json').to_s)
-states = JSON.parse(File.read(filepath))
+City.create(name: "São Paulo",state_id: 1)
+City.create(name: "Rio de Janeiro",state_id: 2)
 
-states.each do |state|
-  state_obj = State.find_or_create_by(acronym: state['acronym'], name: state['name'])
+Address.create(name: "Casa",public_place: "Rua Principal",zip_code: "12345678",reference: "Próximo ao mercado",complement: "Casa 1",number: "123",neighborhood: "Centro",city_id: 1,addressable_type: "Customer",addressable_id: 1)
 
-  state['cities'].each do |city|
-    City.find_or_create_by(name: city['name'], state: state_obj)
-    Rails.logger.debug { "Adicionando a cidade #{city['name']} ao estado #{state_obj.name}" }
-  end
-end
+Address.create(name: "Trabalho",public_place: "Avenida Comercial",zip_code: "87654321",reference: "Próximo ao escritório",complement: "Sala 2",number: "456",neighborhood: "Bairro Industrial",city_id: 2,addressable_type: "Chef",addressable_id: 1)
 
-admin_user = User.find_or_create_by(email: 'admin+1@rarolabs.com.br', cpf: '52947611578') do |model|
-  model.attributes = {
-    name: 'Admin RaroFood',
-    password: 'VW1234**'
-  }
-end
-Administrator.find_or_create_by(user: admin_user)
+User.create(name: "Daniel", cpf: "12345678901", email: "daniel@gmail.com", password: "password123")
+User.create(name: "Klaus", cpf: "12378945611", email: "klaus@gmail.com", password: "password123")
+User.create(name: "Rita", cpf: "12378945612", email: "rita@gmail.com", password: "password123")
+
+Administrator.create(user_id: 1)
+
+Chef.create(user_id: 3,address_id: 2,approver_id: 1)
+
