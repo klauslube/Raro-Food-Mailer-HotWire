@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class DishesController < ApplicationController
-  skip_before_action :verify_authenticity_token 
+  skip_before_action :verify_authenticity_token
   before_action :fetch_dish_or_chef, only: %i[index edit update destroy]
   before_action :fetch_dishes_with_order, only: %i[show]
 
@@ -17,14 +19,14 @@ class DishesController < ApplicationController
     @dish = Dish.new
   end
 
+  def edit; end
+
   def create
     @dish = Dish.new(state_params)
     return render json: @dish if @dish.save
-    
+
     render json: @dish.errors
   end
-
-  def edit; end
 
   def update
     return render json: @dish if @dish.update(dish_params)
@@ -33,11 +35,11 @@ class DishesController < ApplicationController
   end
 
   def destroy
-    render json: {message: "Deleted successfully"} if @dish.destroy
+    render json: { message: 'Deleted successfully' } if @dish.destroy
   end
 
   private
-  
+
   def dish_params
     params.require(:dish).permit(:chef_id, :name, :description, :available, :active, :unit_price)
   end

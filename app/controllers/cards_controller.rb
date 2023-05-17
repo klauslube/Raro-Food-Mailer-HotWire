@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CardsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :fetch_card, only: %i[show]

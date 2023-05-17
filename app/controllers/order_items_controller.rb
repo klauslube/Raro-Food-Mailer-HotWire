@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class OrderItemsController < ApplicationController
-  skip_before_action :verify_authenticity_token 
+  skip_before_action :verify_authenticity_token
   before_action :fetch_order, only: %i[show]
 
   def index

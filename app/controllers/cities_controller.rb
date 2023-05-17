@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class CitiesController < ApplicationController
-  skip_before_action :verify_authenticity_token 
+  skip_before_action :verify_authenticity_token
   before_action :fetch_chef_or_order, only: %i[show]
   before_action :fetch_state, only: %i[index]
 
@@ -23,10 +25,10 @@ class CitiesController < ApplicationController
     @order = Order.find(params[:order_id]) if params.fetch(:order_id, nil)
 
     @city = if @chef
-      @chef.city
-    elsif @order
-      @order.city
-    end
+              @chef.city
+            elsif @order
+              @order.city
+            end
   end
 
   def city_params

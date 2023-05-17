@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class OrdersController < ApplicationController
-  skip_before_action :verify_authenticity_token 
+  skip_before_action :verify_authenticity_token
   before_action :fetch_order_coupon_customer, only: %i[index show edit update destroy]
 
   def index
@@ -17,14 +19,14 @@ class OrdersController < ApplicationController
     @order = Order.new
   end
 
+  def edit; end
+
   def create
     @order = Order.new(order_params)
     return render json: @order if @order.save
-    
+
     render json: @order.errors
   end
-
-  def edit; end
 
   def update
     return render json: @order if @order.update(order_params)
@@ -33,11 +35,11 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    render json: {message: "Deleted successfully"} if @order.destroy
+    render json: { message: 'Deleted successfully' } if @order.destroy
   end
 
   private
-  
+
   def order_params
     params.require(:order).permit(:customer_id, :delivery_address_id, :total_price, :freight_price, :status, :coupon_id)
   end

@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
-Rails.application.routes.draw do 
-  resources :chefs, param: :chef_id do 
+Rails.application.routes.draw do
+  resources :chefs, param: :chef_id do
     member do
-      resource :address, only: %i[show]          
-      resource :city, only: %i[show]               
-      resource :state, only: %i[show]            
-      resources :telephones, only: %i[index]     
-      resources :dishes, only: %i[index]         
+      resource :address, only: %i[show]
+      resource :city, only: %i[show]
+      resource :state, only: %i[show]
+      resources :telephones, only: %i[index]
+      resources :dishes, only: %i[index]
     end
   end
-  
+
   resources :states do
     member do
-      resources :cities, only: %i[index]           
+      resources :cities, only: %i[index]
     end
   end
 
@@ -47,7 +47,7 @@ Rails.application.routes.draw do
   end
 
   resources :orders, param: :order_id do
-    member do 
+    member do
       resources :order_items, only: %i[index show]
       resources :dishes, only: %i[index show]
       resource :city, only: %i[show]

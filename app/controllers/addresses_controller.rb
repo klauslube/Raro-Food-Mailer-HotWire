@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class AddressesController < ApplicationController
-  skip_before_action :verify_authenticity_token 
+  skip_before_action :verify_authenticity_token
   before_action :fetch_chef_or_customer, only: %i[show]
 
   def show
@@ -13,9 +15,9 @@ class AddressesController < ApplicationController
     @customer = Customer.find(params[:customer_id]) if params.fetch(:customer_id, nil)
 
     @address = if @chef
-      @chef.address
-    elsif @customer
-      @customer.addresses.find(params[:id])
-    end
+                 @chef.address
+               elsif @customer
+                 @customer.addresses.find(params[:id])
+               end
   end
 end

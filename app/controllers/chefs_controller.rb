@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ChefsController < ApplicationController
-  skip_before_action :verify_authenticity_token 
+  skip_before_action :verify_authenticity_token
   before_action :fetch_chef, only: %i[show edit update destroy]
 
   def index
@@ -14,17 +14,17 @@ class ChefsController < ApplicationController
   end
 
   def new
-    @chef = Chef.new 
+    @chef = Chef.new
   end
+
+  def edit; end
 
   def create
     @chef = Chef.new(chef_params)
     return render json: @chef if @chef.save
-    
+
     render json: @chef.errors
   end
-
-  def edit; end
 
   def update
     return render json: @chef if @chef.update(chef_params)
@@ -33,7 +33,7 @@ class ChefsController < ApplicationController
   end
 
   def destroy
-    render json: {message: "Deleted successfully"} if @chef.destroy
+    render json: { message: 'Deleted successfully' } if @chef.destroy
   end
 
   private
@@ -45,5 +45,4 @@ class ChefsController < ApplicationController
   def fetch_chef
     @chef = Chef.find(params[:chef_id])
   end
-  
 end
