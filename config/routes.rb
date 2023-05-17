@@ -22,4 +22,10 @@ Rails.application.routes.draw do
       resources :orders, only: %i[index]
     end
   end
+
+  resources :dishes, param: :dish_id do
+    member do
+      resources :categories, only: %i[index]
+    end
+  end
 end

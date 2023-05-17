@@ -22,3 +22,6 @@ Telephone.create(number: "112233445", contactable_type: "Customer", contactable_
 
 Coupon.create(code: "1234", name: "RARO10", description: "RARO", start_date: "2023-04-09", end_date: "2023-04-15", total_discount: 10.00, creator_id: 1)
 Coupon.create(code: "1231", name: "RARO20", description: "RARO", start_date: "2023-04-09", end_date: "2023-04-15", total_discount: 20.00, creator_id: 1)
+
+Dish.create(chef_id: 1, name: 'Lasanha', description: "Lasanha com Molho Vermelho", available: true, active: true, unit_price: 100.00)
+Dish.create(chef_id: 2, name: 'Strogonoff', description: "Strogonoff de frango", available: true, active: true, unit_price: 50.00)
