@@ -31,4 +31,9 @@ Rails.application.routes.draw do
 
   resources :categories, only: %i[index]
 
+  resources :payments, param: :payment_id do
+    member do
+      resource :customer, only: %i[show]
+    end
+  end
 end
