@@ -36,4 +36,13 @@ Rails.application.routes.draw do
       resource :customer, only: %i[show]
     end
   end
+
+  resources :customers, param: :customer_id do
+    member do
+      resources :orders, only: %i[index]
+      resources :addresses, only: %i[show]
+      resources :telephones, only: %i[index]
+      resources :cards, only: %i[show]
+    end
+  end
 end
