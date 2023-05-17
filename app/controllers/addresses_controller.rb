@@ -1,9 +1,15 @@
 class AddressesController < ApplicationController
   skip_before_action :verify_authenticity_token 
-  
-  def show_chef_address
-    @chef = Chef.find(params[:id])
+  before_action :fetch_chef, only: %i[show]
+
+  def show
     @address = @chef.address
     render json: @address
+  end
+
+  private
+
+  def fetch_chef
+    @chef = Chef.find(params[:chef_id])
   end
 end

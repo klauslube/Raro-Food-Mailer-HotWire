@@ -17,3 +17,5 @@ Administrator.create(user_id: 1)
 Chef.create(user_id: 2,address_id: 2,approver_id: 1)
 Chef.create(user_id: 3, address_id: 2, approver_id: 1)
 
+Telephone.create(number: "123456789", contactable_type: "Chef", contactable_id: 1)
+Telephone.create(number: "112233445", contactable_type: "Customer", contactable_id: 2)

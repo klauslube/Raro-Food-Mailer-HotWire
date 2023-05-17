@@ -11,12 +11,6 @@ class StatesController < ApplicationController
     render json: @state
   end
 
-  def show_chef_state
-    @chef = Chef.find(params[:id])
-    @state = @chef.state
-    render json: @state
-  end
-
   def new
     @state = State.new
   end
@@ -47,6 +41,8 @@ class StatesController < ApplicationController
   end
 
   def fetch_state
-    @state = State.find(params[:id])
+    @state = State.find(params[:state_id]) if params.fetch(:state_id, nil)
+    @chef = Chef.find(params[:chef_id]) if params.fetch(:chef_id, nil)
+    @state ||= @chef.state
   end
 end
