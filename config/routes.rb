@@ -45,4 +45,13 @@ Rails.application.routes.draw do
       resources :cards, only: %i[show]
     end
   end
+
+  resources :orders, param: :order_id do
+    member do 
+      resources :order_items, only: %i[index show]
+      resources :dishes, only: %i[index show]
+      resource :city, only: %i[show]
+      resource :payment, only: %i[show]
+    end
+  end
 end
