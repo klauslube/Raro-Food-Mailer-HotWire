@@ -28,4 +28,7 @@ Rails.application.routes.draw do
       resources :categories, only: %i[index]
     end
   end
+
+  resources :categories, only: %i[index]
+
 end
