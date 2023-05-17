@@ -41,6 +41,6 @@ class CouponsController < ApplicationController
   end
 
   def fetch_coupon
-    @coupon = Coupon.find(params[:id]) if params.fetch(:id, nil)
+    @coupon = Coupon.find(params[:id])
   end
 end

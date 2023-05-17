@@ -1,6 +1,7 @@
 class DishesController < ApplicationController
   skip_before_action :verify_authenticity_token 
-  before_action :fetch_dish, only: %i[index show edit update destroy]
+  before_action :fetch_dish_or_chef, only: %i[index edit update destroy]
+  before_action :fetch_dishes_with_order, only: %i[show]
 
   def index
     @dishes = @chef.dishes unless @chef.nil?
@@ -41,8 +42,14 @@ class DishesController < ApplicationController
     params.require(:dish).permit(:chef_id, :name, :description, :available, :active, :unit_price)
   end
 
-  def fetch_dish
-    @dish = Dish.find(params[:dish_id]) if params.fetch(:dish_id, nil)
+  def fetch_dish_or_chef
     @chef = Chef.find(params[:chef_id]) if params.fetch(:chef_id, nil)
+    @order = Order.find(params[:order_id]) if params.fetch(:order_id, nil)
+  end
+
+  def fetch_dishes_with_order
+    @dish = Dish.find(params[:dish_id]) if params.fetch(:dish_id, nil)
+    @order = Order.find(params[:order_id]) if params.fetch(:order_id, nil)
+    @dish = @order.dishes.find(params[:id]) if params.fetch(:id, nil)
   end
 end

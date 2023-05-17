@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   skip_before_action :verify_authenticity_token 
-  before_action :fetch_order, only: %i[index show edit update destroy]
+  before_action :fetch_order_coupon_customer, only: %i[index show edit update destroy]
 
   def index
     @orders = @coupon.orders unless @coupon.nil?
@@ -42,7 +42,7 @@ class OrdersController < ApplicationController
     params.require(:order).permit(:customer_id, :delivery_address_id, :total_price, :freight_price, :status, :coupon_id)
   end
 
-  def fetch_order
+  def fetch_order_coupon_customer
     @order = Order.find(params[:order_id]) if params.fetch(:order_id, nil)
     @coupon = Coupon.find(params[:id]) if params.fetch(:id, nil)
     @customer = Customer.find(params[:customer_id]) if params.fetch(:customer_id, nil)

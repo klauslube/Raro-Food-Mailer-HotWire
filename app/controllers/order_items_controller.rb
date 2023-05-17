@@ -12,6 +12,6 @@ class OrderItemsController < ApplicationController
   end
 
   def fetch_order
-    @order = Order.find(params[:order_id]) if params.fetch(:order_id, nil)
+    @order = Order.find(params[:order_id])
   end
 end

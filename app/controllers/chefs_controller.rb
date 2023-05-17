@@ -43,7 +43,7 @@ class ChefsController < ApplicationController
   end
 
   def fetch_chef
-    @chef = Chef.find(params[:id])
+    @chef = Chef.find(params[:chef_id])
   end
   
 end

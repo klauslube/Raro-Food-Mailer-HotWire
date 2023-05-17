@@ -41,7 +41,7 @@ class StatesController < ApplicationController
   end
 
   def fetch_state
-    @state = State.find(params[:state_id]) if params.fetch(:state_id, nil)
+    @state = State.find(params[:id]) if params.fetch(:id, nil)
     @chef = Chef.find(params[:chef_id]) if params.fetch(:chef_id, nil)
     @state ||= @chef.state
   end

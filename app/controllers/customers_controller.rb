@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   skip_before_action :verify_authenticity_token 
-  before_action :fetch_customer, only: %i[show edit update destroy]
+  before_action :fetch_customer_or_payment, only: %i[show edit update destroy]
 
   def index
     @customers = Customer.all
@@ -40,7 +40,7 @@ class CustomersController < ApplicationController
     params.require(:customer).permit(:user_id, :birthday)
   end
 
-  def fetch_customer
+  def fetch_customer_or_payment
     @customer = Customer.find(params[:customer_id]) if params.fetch(:customer_id, nil)
     @payment = Payment.find(params[:payment_id]) if params.fetch(:payment_id, nil)
     @customer ||= @payment.customer
