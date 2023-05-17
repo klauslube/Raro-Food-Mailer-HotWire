@@ -1,155 +1,47 @@
-# raro-food
+# Raro Food - Parte 2 
 
-Projeto prático para aulas dos fundamentos de modelagem de banco de dados.
+Projeto prático para aulas de Rotas, Controllers, MVC.
 
-## setup
+O projeto tem como o objetivo continuar o projeto raro-food, criando as rotas e controllers necessários.
+
+
+## Setup Inicial
 
 Antes de iniciar a aplicação, recomenda-se a execução da seguinte sequência de comandos:
 
-```bash
+```
 rvm use 3.1.2
-cd raro-food
+cd exercicio-semana-10
 bundle install
 rails db:create
 rails db:migrate
 rails db:seed
 ```
 
-Para iniciar o servidor, recomenda-se a utilização do comando `./bin/dev`, pois ele garante os assets serão todos devidamente processados.
+<br>
 
-#### Alguns comandos utilizados para nossa aplicação:
+## Tecnologias Utilizadas
 
-Verificar versão do ruby utilizada:
+- Rails
+- Insomnia
+- Dbeaver
+- Mysql
+- Rubocop
 
-```bash
-rvm use 3.1.2
-```
+<br>
 
-Verificar versão do Yarn
+## Implementação
 
-```bash
-yarn -v
-```
+Na aplicação, as rotas e controllers para cada entidade foram criadas sequencialmente. Cada branch e MR é de uma entidade. 
+- Para as entidades pedidas, foi decidido criar rotas com as actions do CRUD completo, já para entidades que não foram pedidas no enunciado, foi criado apenas as ações necessárias para a rota pedida.
 
-Criando uma nova aplicação rails:
+- Também foi criado seeds para facilitar os testes de funcionamento das rotas e controllers, com ajuda de  requests/response feitas no <b>Insomnia</b>.
 
-```bash
-rails new raro_food -c=tailwind -d=mysql -j=esbuild
-```
+- Nos controllers foram criadas condições para encaminhar os parametros de acordo com as rotas e actions.
 
-```bash
-cd raro_food
-bin/rails db:create db:migrate db:seed
-```
+- Foi usado Dbeaver para ter uma visualização melhor dos dados do projeto criado nas seeds.
 
-### Adicionando Unit Test
 
-Adicione o seguinte trecho no `Gemfile`:
+## Autor
 
-```ruby
-group :development, :test do
-  # ....
-  gem 'factory_bot_rails'
-  gem 'faker'
-end
-
-group :test do
-  # ...
-  gem 'rspec-rails'
-  gem 'shoulda-matchers'
-end
-```
-
-Execute os seguintes comandos:
-
-```bash
-bin/rails generate rspec:install
-bin/rails db:migrate db:test:prepare
-bin/rails generate rspec:model State
-```
-
-No arquivo gerado `rails_helper.rb`
-
-```ruby
-#...
-Shoulda::Matchers.configure do |config|
-  config.integrate do |with|
-    with.test_framework :rspec
-    with.library :rails
-  end
-end
-```
-
-Crie um arquivo: `spec/support/factory_bot.rb` com o seguinte conteúdo:
-
-```ruby
-# frozen_string_literal: true
-
-RSpec.configure do |config|
-  config.include FactoryBot::Syntax::Methods
-end
-```
-
-Ative o carregamento automático do diretório de support descomentando a seguinte linha em seu `spec/rails_helper.rb`:
-
-```ruby
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
-```
-
-### Adicionar Coverage para Testes
-
-Adicione o seguinte trecho no `Gemfile` e execute o `bundle install`:
-
-```ruby
-group :test do
-  # ...
-  gem 'simplecov', require: false
-end
-```
-
-No início do arquivo `spec_helper.rb` acrescentar o seguinte trecho:
-
-```ruby
-# frozen_string_literal: true
-
-require 'simplecov'
-SimpleCov.start
-
-# ...
-```
-
-### Adicionando Rubocop
-
-No arquivo `Gemfile`:
-
-```ruby
-group :development do
-  # ...
-  gem 'rubocop-rails', require: false
-  gem 'rubocop-rspec', require: false
-end
-```
-
-Na raiz do projeto crie um arquivo `.rubocop.yml` com o seguinte conteúdo:
-
-```yaml
-require:
-  - rubocop-rails
-  - rubocop-rspec
-
-AllCops:
-  NewCops: enable
-  TargetRubyVersion: 3.1.2
-```
-
-Ao executar o comando abaixo no terminal, serão listados os erros encontrados:
-
-```bash
-rubocop
-```
-
-Para corrigí-los, pode ser executado o comando:
-
-```bash
-rubocop -A
-```
+Este projeto foi desenvolvido por Klaus Lube, como parte do exercício semanal da Raro Academy(Professor William Franklin de Souza) para aprimorar as habilidades em Rotas, Controllers, MVC e rails.
