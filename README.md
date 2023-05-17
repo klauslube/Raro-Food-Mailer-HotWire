@@ -37,7 +37,7 @@ Na aplicação, as rotas e controllers para cada entidade foram criadas sequenci
 
 - Também foi criado seeds para facilitar os testes de funcionamento das rotas e controllers, com ajuda de  requests/response feitas no <b>Insomnia</b>.
 
-- Nos controllers foram criadas condições para encaminhar os parametros de acordo com as rotas e actions.
+- Nos controllers foram criadas condições para encaminhar os parametros de acordo com as rotas e actions corretas.
 
 - Foi usado Dbeaver para ter uma visualização melhor dos dados do projeto criado nas seeds.
 
