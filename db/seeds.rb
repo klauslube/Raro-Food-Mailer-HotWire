@@ -25,3 +25,6 @@ Coupon.create(code: "1231", name: "RARO20", description: "RARO", start_date: "20
 
 Dish.create(chef_id: 1, name: 'Lasanha', description: "Lasanha com Molho Vermelho", available: true, active: true, unit_price: 100.00)
 Dish.create(chef_id: 2, name: 'Strogonoff', description: "Strogonoff de frango", available: true, active: true, unit_price: 50.00)
+
+Category.create(name: 'Massa')
+Category.create(name: 'Carne')
