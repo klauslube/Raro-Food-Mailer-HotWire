@@ -3,17 +3,17 @@
 Rails.application.routes.draw do 
   resources :chefs, param: :chef_id do 
     member do
-      resource :address, only: %i[show]                # '/chefs/:chef_id/address'
-      resource :city, only: %i[show]                   # '/chefs/:chef_id/city'  
-      resource :state, only: %i[show]                  # '/chefs/:chef_id/state'
-      resources :telephones, only: %i[index]           # '/chefs/:chef_id/telephones'
-      resources :dishes, only: %i[index]               # '/chefs/:chef_id/dishes'
+      resource :address, only: %i[show]          
+      resource :city, only: %i[show]               
+      resource :state, only: %i[show]            
+      resources :telephones, only: %i[index]     
+      resources :dishes, only: %i[index]         
     end
   end
   
   resources :states do
     member do
-      resources :cities, only: %i[index]            # '/states/:state_id/cities
+      resources :cities, only: %i[index]           
     end
   end
 
