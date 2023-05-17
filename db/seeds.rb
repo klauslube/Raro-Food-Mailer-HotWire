@@ -11,6 +11,7 @@ Address.create(name: "Trabalho",public_place: "Avenida Comercial",zip_code: "876
 User.create(name: "Daniel", cpf: "12345678901", email: "daniel@gmail.com", password: "password123")
 User.create(name: "Klaus", cpf: "12378945611", email: "klaus@gmail.com", password: "password123")
 User.create(name: "Rita", cpf: "12378945612", email: "rita@gmail.com", password: "password123")
+User.create(name: "Joao", cpf: "12378945644", email: "joao@gmail.com", password: "password123")
 
 Administrator.create(user_id: 1)
 
@@ -28,3 +29,11 @@ Dish.create(chef_id: 2, name: 'Strogonoff', description: "Strogonoff de frango",
 
 Category.create(name: 'Massa')
 Category.create(name: 'Carne')
+
+Customer.create(user_id: 4, birthday: '2000-09-10')
+
+Order.create(customer_id: 1, delivery_address_id: 1, total_price: 100.00, freight_price: 10.00, status: 1, coupon_id: 1)
+OrderItem.create(order_id: 1, dish_id: 1, amount: 1, unit_price: 100.00)
+
+Card.create(number: 123456, name: 'Joao', security_code: 199, card_type: 'credit', expiration_date: '2023-04-16', customer_id: 1)
+Payment.create(payment_type: 'credit_card', state: 'paid', order_id: 1, card_id: 1)
