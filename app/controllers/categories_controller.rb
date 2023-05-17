@@ -1,16 +1,17 @@
+# frozen_string_literal: true
+
 class CategoriesController < ApplicationController
   skip_before_action :verify_authenticity_token
-  
+  before_action :fetch_dish, only: %i[index]
+
   def index
-    @categories = Category.all
+    @categories = @dish.categories
     render json: @categories
   end
-  # def index
-  #   @dish = Dish.find(params[:dish_id])
-  #   @categories = @dish.categories
-  #   render json: @categories
-  # end
-  # def category_params
-  #   params.require(:category).permit(:name)
-  # end
+
+  private
+
+  def fetch_dish
+    @dish = Dish.find(params[:dish_id])
+  end
 end

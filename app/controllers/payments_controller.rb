@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class PaymentsController < ApplicationController
-  skip_before_action :verify_authenticity_token 
-  before_action :fetch_payment, only: %i[show edit update destroy]
+  skip_before_action :verify_authenticity_token
+  before_action :fetch_payment_or_order, only: %i[show edit update destroy]
 
   def index
     @payments = Payment.all
@@ -15,14 +17,14 @@ class PaymentsController < ApplicationController
     @payment = Payment.new
   end
 
+  def edit; end
+
   def create
     @payment = Payment.new(payment_params)
     return render json: @payment if @payment.save
-    
+
     render json: @payment.errors
   end
-
-  def edit; end
 
   def update
     return render json: @payment if @payment.update(payment_params)
@@ -31,18 +33,19 @@ class PaymentsController < ApplicationController
   end
 
   def destroy
-    render json: {message: "Deleted successfully"} if @payment.destroy
+    render json: { message: 'Deleted successfully' } if @payment.destroy
   end
 
   private
-  
+
   def payment_params
     params.require(:payment).permit(:payment_type, :state, :order_id, :card_id)
   end
 
-  def fetch_payment
+  def fetch_payment_or_order
     @payment = Payment.find(params[:payment_id]) if params.fetch(:payment_id, nil)
-    # @customer = Customer.find(params[:customer_id]) if params.fetch(:customer_id, nil)
-    # @payment ||= @customer.payment
+    @order = Order.find(params[:order_id]) if params.fetch(:order_id, nil)
+
+    @payment ||= @order.payment
   end
 end

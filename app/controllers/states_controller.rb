@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class StatesController < ApplicationController
-  skip_before_action :verify_authenticity_token 
+  skip_before_action :verify_authenticity_token
   before_action :fetch_state, only: %i[show edit update destroy]
 
   def index
@@ -15,14 +17,14 @@ class StatesController < ApplicationController
     @state = State.new
   end
 
+  def edit; end
+
   def create
     @state = State.new(state_params)
     return render json: @state if @state.save
-    
+
     render json: @state.errors
   end
-
-  def edit; end
 
   def update
     return render json: @state if @state.update(state_params)
@@ -31,17 +33,17 @@ class StatesController < ApplicationController
   end
 
   def destroy
-    render json: {message: "Deleted successfully"} if @state.destroy
+    render json: { message: 'Deleted successfully' } if @state.destroy
   end
 
   private
-  
+
   def state_params
     params.require(:state).permit(:name, :acronym)
   end
 
   def fetch_state
-    @state = State.find(params[:state_id]) if params.fetch(:state_id, nil)
+    @state = State.find(params[:id]) if params.fetch(:id, nil)
     @chef = Chef.find(params[:chef_id]) if params.fetch(:chef_id, nil)
     @state ||= @chef.state
   end

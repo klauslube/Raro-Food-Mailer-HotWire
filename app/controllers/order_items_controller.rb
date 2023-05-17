@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class OrderItemsController < ApplicationController
-  skip_before_action :verify_authenticity_token 
+  skip_before_action :verify_authenticity_token
   before_action :fetch_order, only: %i[show]
 
   def index
@@ -12,6 +14,6 @@ class OrderItemsController < ApplicationController
   end
 
   def fetch_order
-    @order = Order.find(params[:order_id]) if params.fetch(:order_id, nil)
+    @order = Order.find(params[:order_id])
   end
 end
