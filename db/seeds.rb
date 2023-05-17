@@ -37,6 +37,8 @@ Dish.create(chef_id: 2, name: 'Strogonoff', description: 'Strogonoff de frango',
 
 Category.create(name: 'Massa')
 Category.create(name: 'Carne')
+Category.first.dishes.find_or_create_by(chef_id: Chef.first.id, name: 'Massa', description: 'Massa ', available: true,
+                                        active: true, unit_price: 100.00)
 
 Customer.create(user_id: 4, birthday: '2000-09-10')
 
