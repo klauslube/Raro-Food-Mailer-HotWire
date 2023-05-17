@@ -16,4 +16,10 @@ Rails.application.routes.draw do
       resources :cities, only: %i[index]            # '/states/:state_id/cities
     end
   end
+
+  resources :coupons do
+    member do
+      resources :orders, only: %i[index]
+    end
+  end
 end
