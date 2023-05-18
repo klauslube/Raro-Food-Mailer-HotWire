@@ -30,7 +30,7 @@ rails db:seed
 
 <br>
 
-## Implementação
+## Implementações
 
 Na aplicação, as rotas e controllers para cada entidade foram criadas sequencialmente. Cada branch e MR é de uma entidade. 
 - Para as entidades pedidas, foi decidido criar rotas com as actions do CRUD completo, já para entidades que não foram pedidas no enunciado, foi criado apenas as ações necessárias para a rota pedida.
@@ -38,6 +38,10 @@ Na aplicação, as rotas e controllers para cada entidade foram criadas sequenci
 - Também foi criado seeds para facilitar os testes de funcionamento das rotas e controllers, com ajuda de  requests/response feitas no <b>Insomnia</b>.
 
 - Nos controllers foram criadas condições para encaminhar os parametros de acordo com as rotas e actions corretas.
+
+- Nas rotas, foi usado member para ter rotas aninhadas, e teve uso de resources junto com only, em busca de ter menos linhas no código e pensando na escabilidade da aplicação.
+
+- No controller foi usado callbacks como before_action para certos métodos serem iniciados antes, e o skip_before_action :verify_authenticity_token para skipar a validação de token ao usar o Insomnia no desenvolvimento.
 
 - Foi usado Dbeaver para ter uma visualização melhor dos dados do projeto criado nas seeds.
 
