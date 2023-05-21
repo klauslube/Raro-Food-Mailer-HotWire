@@ -6,40 +6,41 @@ class CustomersController < ApplicationController
 
   def index
     @customers = Customer.all
-    render json: @customers
   end
 
   def show
-    render json: @customer
   end
 
   def new
     @customer = Customer.new
   end
 
-  def edit; end
+  # def edit; end
 
   def create
     @customer = Customer.new(customer_params)
-    return render json: @customer if @customer.save
-
-    render json: @customer.errors
+  
+    if @customer.save
+      redirect_to customer_url(@customer), notice: "Customer foi criado com sucesso."
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
-  def update
-    return render json: @customer if @customer.update(customer_params)
+  # def update
+  #   return render json: @customer if @customer.update(customer_params)
 
-    render json: @customer.errors
-  end
+  #   render json: @customer.errors
+  # end
 
-  def destroy
-    render json: { message: 'Deleted successfully' } if @customer.destroy
-  end
+  # def destroy
+  #   render json: { message: 'Deleted successfully' } if @customer.destroy
+  # end
 
   private
 
   def customer_params
-    params.require(:customer).permit(:user_id, :birthday)
+    params.require(:customer).permit(:birthday, user_attributes: %i[name cpf email password], addresses_attributes: %i[name public_place zip_code number neighborhood city_id addressable_type addressable_id])
   end
 
   def fetch_customer_or_payment
