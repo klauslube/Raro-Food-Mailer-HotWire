@@ -1,4 +1,4 @@
-<%= form_with(model: @customer) do |form| %>
+<%= form_with model: @customer do |form| %>
    <% if @customer.errors.any? %>
     <div class="rounded-md bg-red-50 p-4">
       <div class="flex">
@@ -22,8 +22,8 @@
   <% end %>
   <div class="border-b border-gray-900/10 pb-12 flex flex-col justify-center">
     <fieldset class='mt-5'>
-      <legend class="text-xl font-bold ml-6">Cadastro de customer</legend>
-      <%= form.fields_for :user_attributes do |user_form| %>
+      <legend class="text-xl font-bold ml-6">Cadastro de Cliente</legend>
+      <%= form.fields_for :user do |user_form| %>
         <div class="mb-4 w-2/4 ml-6">
           <%= user_form.label 'Nome', class: label_classes %>
           <%= user_form.text_field :name, class: input_classes %>
@@ -54,7 +54,7 @@
     <fieldset class='mt-5'>
       <legend class="text-xl font-bold ml-6">Endereço</legend>
 
-      <%= form.fields_for :address_attributes do |address_form| %>
+      <%= form.fields_for :addresses do |address_form| %>
         <div class="mb-4 w-2/4 ml-6">
           <%= address_form.label 'Rua', class: label_classes %>
           <%= address_form.text_field :name, class: input_classes %>
@@ -86,8 +86,6 @@
           <%= address_form.collection_select(:city_id, City.all, :id, :name, { prompt: 'Selecione...' }, { class: input_classes }) %>
         </div>
 
-        <%= address_form.hidden_field :addressable_type, value: 'Customer' %>
-        <%= address_form.hidden_field :addressable_id, value: @customer.id %>
       <% end %>
     </fieldset>
 

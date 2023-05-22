@@ -8,6 +8,7 @@ class Customer < ApplicationRecord
   has_many :addresses, as: :addressable, dependent: :destroy
   has_many :telephones, as: :contactable, dependent: :destroy
   has_many :cards, dependent: :destroy
+  delegate :name, to: :user
 
   validates :birthday, presence: true
 
