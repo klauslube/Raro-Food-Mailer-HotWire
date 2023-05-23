@@ -2,7 +2,7 @@
 
 class OrdersController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :fetch_order, only: %i[index show edit update]
+  before_action :fetch_order, only: %i[show edit update]
 
   def index
     @orders = Order.all
