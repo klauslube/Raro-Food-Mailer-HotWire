@@ -7,6 +7,7 @@ class Order < ApplicationRecord
 
   has_many :items, class_name: 'OrderItem', dependent: :destroy
   has_many :dishes, through: :items
+  has_many :order_items
 
   has_one :city, through: :delivery_address
   has_one :payment, dependent: :destroy
