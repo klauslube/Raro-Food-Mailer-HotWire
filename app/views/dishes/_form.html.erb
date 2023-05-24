@@ -35,7 +35,7 @@
 
         <div class="mb-4 w-2/4">
           <%= form.label 'Preço Unitário', class: label_classes %>
-          <%= form.number_field :unit_price, step: 0.1, class: input_classes %>
+          <%= form.number_field :unit_price, step: 0.01, min: 0, class: input_classes %>
         </div>
 
         <div class="p-2 mb-4 w-2/4 bg-gray-200 rounded">
@@ -48,11 +48,11 @@
           <%= form.label 'Disponibilidade', class: "mb-2 block text-sm font-medium leading-6 text-gray-900" %>
           <div class="flex items-center">
             <%= form.label 'Disponível', class: label_classes %>
-            <%= form.radio_button :avalaible, true, class:"ml-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"%>
+            <%= form.radio_button :available, true, class:"ml-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"%>
           </div>
           <div class="flex items-center">
             <%= form.label 'Não Disponível', class: label_classes %>
-            <%= form.radio_button :avalaible, false ,class:"ml-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"%>
+            <%= form.radio_button :available, false ,class:"ml-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"%>
           </div>
         </div>
    
