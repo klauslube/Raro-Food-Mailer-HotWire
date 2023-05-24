@@ -24,7 +24,7 @@ class DishesController < ApplicationController
   end
 
   def update
-    return render @dish, notice: 'Prato alterado com sucesso' if @dish.update(dish_params)
+    redirect_to @dish, notice: 'Prato alterado com sucesso' if @dish.update(dish_params)
   end
 
   def destroy
