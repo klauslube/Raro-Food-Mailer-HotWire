@@ -9,17 +9,17 @@ class CategoriesController < ApplicationController
 
   def show; end
 
-  def edit; end
-
   def new
     @category = Category.new
   end
 
+  def edit; end
+
   def create
     @category = Category.new(category_params)
-  
+
     if @category.save
-      redirect_to category_url(@category), notice: "Categoria foi criada com sucesso."
+      redirect_to category_url(@category), notice: 'Categoria foi criada com sucesso.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -42,5 +42,4 @@ class CategoriesController < ApplicationController
   def category_params
     params.require(:category).permit(:name)
   end
-
 end

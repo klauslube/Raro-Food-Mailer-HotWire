@@ -7,8 +7,7 @@ class DishesController < ApplicationController
     @dishes = Dish.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @dish = Dish.new
@@ -18,12 +17,10 @@ class DishesController < ApplicationController
 
   def create
     @dish = Dish.new(dish_params)
-  
-    if @dish.save
-      return redirect_to dish_path(@dish), notice: "Prato foi criado com sucesso."
-    else
-      render :new, status: :unprocessable_entity
-    end
+
+    return redirect_to dish_path(@dish), notice: 'Prato foi criado com sucesso.' if @dish.save
+
+    render :new, status: :unprocessable_entity
   end
 
   def update

@@ -7,8 +7,7 @@ class OrdersController < ApplicationController
     @orders = Order.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @order = Order.new
@@ -20,7 +19,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
 
     if @order.save
-      redirect_to @order, notice: "Pedido foi criado com sucesso."
+      redirect_to @order, notice: 'Pedido foi criado com sucesso.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -28,7 +27,7 @@ class OrdersController < ApplicationController
 
   def update
     @order.status = :preparing if @order.order_items.any?
-    
+
     if @order.update(order_params)
       redirect_to @order, notice: 'Pedido foi alterado com sucesso'
     else

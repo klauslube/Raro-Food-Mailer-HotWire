@@ -7,8 +7,7 @@ class CustomersController < ApplicationController
     @customers = Customer.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @customer = Customer.new
@@ -20,9 +19,9 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(customer_params)
-  
+
     if @customer.save
-      redirect_to customer_url(@customer), notice: "Cliente foi criado com sucesso."
+      redirect_to customer_url(@customer), notice: 'Cliente foi criado com sucesso.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -30,7 +29,7 @@ class CustomersController < ApplicationController
 
   def update
     if @customer.update(customer_params)
-      redirect_to @customer, notice: 'Cliente alterado com sucesso' 
+      redirect_to @customer, notice: 'Cliente alterado com sucesso'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -43,10 +42,11 @@ class CustomersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(:birthday, user_attributes: %i[id name cpf email password], addresses_attributes: %i[id name public_place zip_code number neighborhood city_id addressable_type addressable_id])
+    params.require(:customer).permit(:birthday, user_attributes: %i[id name cpf email password],
+                                                addresses_attributes: %i[id name public_place zip_code number neighborhood city_id addressable_type addressable_id])
   end
 
   def fetch_customer
-    @customer = Customer.find(params[:id])     
+    @customer = Customer.find(params[:id])
   end
 end

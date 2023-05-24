@@ -7,8 +7,7 @@ class OrderItemsController < ApplicationController
     @order_items = OrderItem.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @order_item = OrderItem.new
@@ -19,14 +18,14 @@ class OrderItemsController < ApplicationController
   def create
     @order_item = OrderItem.new(order_item_params)
     @order_item.order = Order.find(params[:order_item][:order_id])
-  
+
     if @order_item.save
-      redirect_to edit_order_path(@order_item.order), notice: "Item foi adicionado com sucesso."
+      redirect_to edit_order_path(@order_item.order), notice: 'Item foi adicionado com sucesso.'
     else
       render :new, status: :unprocessable_entity
     end
   end
-  
+
   private
 
   def order_item_params
