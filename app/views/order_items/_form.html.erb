@@ -21,22 +21,27 @@
     </div>
   <% end %>
   <div class="border_item-b border_item-gray-900/10 pb-12 flex flex-col justify-center">
-      <h2 class="text-xl font-bold ml-6">Cadastro de Item do Pedido</h2>
-        <div class="mb-4 w-2/4 ml-6">
+      <h2 class="text-xl font-bold">Cadastro de Item do Pedido</h2>
+        <div class="mb-4 w-2/4">
           <%= form.label 'Prato', class: label_classes %>
           <%= form.collection_select(:dish_id, Dish.all, :id, :name, { prompt: 'Selecione' }, { class: input_classes }) %> 
         </div>
 
-        <div class="mb-4 w-2/4 ml-6">
+        <div class="mb-4 w-2/4">
           <%= form.label 'Quantidade', class: label_classes %>
           <%= form.number_field :amount, min: 1, class: input_classes %> 
         </div>
 
-        <div class="mb-4 w-2/4 ml-6 bg-gray-200 rounded-lg p-3">
-          <%= form.label 'Pedido', class: label_classes %>            
-          <span><%= @order_item.order_id %></span> 
+  
+        <%= form.hidden_field :unit_price, value: @order_item.dish&.unit_price %>
+
+        <div class="mb-4 w-2/4 bg-gray-200 rounded-lg p-3">
+          <%= form.label 'Pedido', class: label_classes %>
+          <%= content_tag :span, "Número #{params[:order_id]}" %>
+          <%= form.hidden_field :order_id, value: params[:order_id] %> 
         </div>
-    <div class="mt-6 ml-6 flex items-center justify-start gap-x-6">
+
+    <div class="mt-6 flex items-center justify-start gap-x-6">
       <%= link_to "Cancelar", order_items_path, class: "text-sm font-semibold leading-6 text-gray-900" %>
       <%= form.submit 'Salvar', class: botoes_azuis %>
     </div>
