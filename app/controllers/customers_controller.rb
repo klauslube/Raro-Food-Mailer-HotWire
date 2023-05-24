@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CustomersController < ApplicationController
-  before_action :fetch_customer_or_payment, only: %i[show edit update destroy]
+  before_action :fetch_customer, only: %i[show edit update destroy]
 
   def index
     @customers = Customer.all
@@ -22,29 +22,31 @@ class CustomersController < ApplicationController
     @customer = Customer.new(customer_params)
   
     if @customer.save
-      redirect_to customer_url(@customer), notice: "Customer foi criado com sucesso."
+      redirect_to customer_url(@customer), notice: "Cliente foi criado com sucesso."
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-  # def update
-  #   return render json: @customer if @customer.update(customer_params)
+  def update
+    if @customer.update(customer_params)
+      redirect_to @customer, notice: 'Cliente alterado com sucesso' 
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
-  #   render json: @customer.errors
-  # end
-
-  # def destroy
-  #   render json: { message: 'Deleted successfully' } if @customer.destroy
-  # end
+  def destroy
+    redirect_to customers_path, notice: 'Cliente deletado com sucesso' if @customer.destroy
+  end
 
   private
 
   def customer_params
-    params.require(:customer).permit(:birthday, user_attributes: %i[name cpf email password], addresses_attributes: %i[name public_place zip_code number neighborhood city_id addressable_type addressable_id])
+    params.require(:customer).permit(:birthday, user_attributes: %i[id name cpf email password], addresses_attributes: %i[id name public_place zip_code number neighborhood city_id addressable_type addressable_id])
   end
 
-  def fetch_customer_or_payment
+  def fetch_customer
     @customer = Customer.find(params[:id])     
   end
 end

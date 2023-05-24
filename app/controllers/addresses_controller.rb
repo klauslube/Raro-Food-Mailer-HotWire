@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class AddressesController < ApplicationController
-  skip_before_action :verify_authenticity_token
   before_action :fetch_chef_or_customer, only: %i[show]
 
   def show
