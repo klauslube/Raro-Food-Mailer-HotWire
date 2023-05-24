@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ChefsController < ApplicationController
+  before_action :authenticate_user!
   before_action :fetch_chef, only: %i[show edit update destroy]
 
   def index

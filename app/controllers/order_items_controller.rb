@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class OrderItemsController < ApplicationController
+  before_action :authenticate_user!
   before_action :fetch_order_item, only: %i[show]
 
   def index
