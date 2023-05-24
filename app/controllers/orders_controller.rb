@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class OrdersController < ApplicationController
-  skip_before_action :verify_authenticity_token
-  before_action :fetch_order, only: %i[show edit update]
+  before_action :fetch_order, only: %i[show edit update destroy]
 
   def index
     @orders = Order.all
@@ -28,7 +27,17 @@ class OrdersController < ApplicationController
   end
 
   def update
-    return render @order if @order.update(order_params)
+    @order.status = :preparing if @order.order_items.any?
+    
+    if @order.update(order_params)
+      redirect_to @order, notice: 'Pedido foi alterado com sucesso'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    redirect_to orders_path, notice: 'Pedido deletado com sucesso' if @order.destroy
   end
 
   private
