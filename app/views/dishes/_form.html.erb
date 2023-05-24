@@ -22,29 +22,29 @@
   <% end %>
   <div class="border-b border-gray-900/10 pb-12 flex flex-col justify-center">
     <fieldset class='mt-5'>
-      <legend class="text-xl font-bold ml-6">Cadastro de Pratos</legend>
-        <div class="mb-4 w-2/4 ml-6">
+      <legend class="text-xl font-bold">Cadastro de Pratos</legend>
+        <div class="mb-4 w-2/4">
           <%= form.label 'Nome', class: label_classes %>
           <%= form.text_field :name, class: input_classes %>
         </div>
 
-        <div class="mb-4 w-2/4 ml-6">
+        <div class="mb-4 w-2/4">
           <%= form.label 'Chef', class: label_classes %>
           <%= form.collection_select(:chef_id, Chef.all, :id, :name, { prompt: 'Selecione o chef' }, class: input_classes)%>
         </div> 
 
-        <div class="mb-4 w-2/4 ml-6">
+        <div class="mb-4 w-2/4">
           <%= form.label 'Preço Unitário', class: label_classes %>
           <%= form.number_field :unit_price, step: 0.1, class: input_classes %>
         </div>
 
-        <div class="p-2 mb-4 w-2/4 ml-6 bg-gray-200 rounded">
+        <div class="p-2 mb-4 w-2/4 bg-gray-200 rounded">
           <%= form.label 'Categorias', class: label_classes %>
             <%= collection_check_boxes(:dish, :category_ids, Category.all, :id, :name) do |check| %>
             <%= check.label { check.check_box + check.text } %>
           <% end %>
         </div>
-        <div class="p-2 mb-4 w-2/4 ml-6 bg-gray-200 rounded">
+        <div class="p-2 mb-4 w-2/4 bg-gray-200 rounded">
           <%= form.label 'Disponibilidade', class: "mb-2 block text-sm font-medium leading-6 text-gray-900" %>
           <div class="flex items-center">
             <%= form.label 'Disponível', class: label_classes %>
@@ -56,7 +56,7 @@
           </div>
         </div>
    
-        <div class="p-2 mb-4 w-2/4 ml-6 bg-gray-200 rounded">
+        <div class="p-2 mb-4 w-2/4 bg-gray-200 rounded">
           <%= form.label 'Atividade', class: label_classes %>
           <div class="flex items-center">
             <%= form.label 'Ativo', class: label_classes %>
@@ -68,13 +68,13 @@
           </div>
         </div>
 
-        <div class="mb-4 w-2/4 ml-6">
+        <div class="mb-4 w-2/4">
           <%= form.label 'Descrição', class: label_classes %>
           <%= form.text_area :description, class: input_classes %>
         </div>
     </fieldset>
 
-    <div class="mt-6 ml-6 flex items-center justify-start gap-x-6">
+    <div class="mt-6 flex items-center justify-start gap-x-6">
       <%= link_to "Cancelar", dishes_path, class: "text-sm font-semibold leading-6 text-gray-900" %>
       <%= form.submit 'Salvar', class: botoes_azuis %>
     </div>

@@ -1,2 +1,11 @@
-<h1>Dishes#show</h1>
-<p>Find me in app/views/dishes/show.html.erb</p>
+<% content_for :titulo do %>
+  <span>
+    Detalhes
+  </span>
+<% end %>
+<%= render "dish" %>
+<div class="flex gap-3">
+  <%= link_to "Editar", edit_dish_path(@dish), class: botoes_laranja %>
+  <%= button_to "Deletar", @dish, data: { confirm: "Você tem certeza?", turbo_confirm: "Você tem certeza?" }, method: :delete , class: botoes_vermelhos %>
+  <%= link_to "Voltar", dishes_path, class: botoes_azuis %>
+</div>
