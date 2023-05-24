@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'home#index'
+  devise_for :users
+  devise_scope :user do
+    root to: 'devise/sessions#new'
+  end
 
   resources :chefs, param: :chef_id
 
