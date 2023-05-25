@@ -1,0 +1,54 @@
+<% content_for :titulo do %>
+  <span>
+    Editar
+  </span>
+<% end %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+
+  <div class="border-b border-gray-900/10 pb-12">
+    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+
+      <div class="sm:col-span-3 field">
+        <%= f.label :name, class: label_classes %>
+        <%= f.text_field :name, autofocus: true, autocomplete: "Nome", class: input_classes %>
+        <br/>
+        
+        <%= f.label :email, class: label_classes %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "Email", class: input_classes %>
+
+      <%# <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <%# <div>Esperando confirmação do: <%= resource.unconfirmed_email</div> %>
+      <%# <% end %> 
+
+      <br/>
+      <div class="sm:col-span-3 field">
+        <%= f.label "Senha", class: label_classes %> <i>(Deixe em branco se você não quiser mudá-lo)</i><br />
+        <%= f.password_field :password, autocomplete: "new-password", class: input_classes %>
+        <% if @minimum_password_length %>
+          <em><%= @minimum_password_length %> caracteres mínimos</em>
+        <% end %>
+
+        <br/>
+        <br/>
+        <%= f.label "Confirmação de senha", class: label_classes %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: input_classes %>
+
+        <br/>
+        <%= f.label "Senha atual", class: label_classes %> <i>(Precisamos da sua senha atual para confirmar suas alterações)</i><br />
+        <%= f.password_field :current_password, autocomplete: "current-password", class: input_classes %>
+
+        <br/>
+      </div>
+
+      <div class="mt-6 flex items-center justify-end gap-x-6 actions">
+        <button>
+        <%= f.submit "Editar", class: botoes_laranja, method: :put %>
+        </button>
+        <%= button_to "Deletar conta", registration_path(resource_name), data: { confirm: "Você tem certeza?", turbo_confirm: "Você tem certeza?" }, method: :delete , class: botoes_vermelhos %>
+        <%= link_to "Voltar", chefs_path, class: botoes_azuis%> 
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class CustomersController < ApplicationController
+  before_action :authenticate_user!
   before_action :fetch_customer, only: %i[show edit update destroy]
 
   def index
