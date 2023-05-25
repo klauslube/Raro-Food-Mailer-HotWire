@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   resources :dishes
 
-  resources :categories, only: %i[index]
+  resources :categories
 
   resources :payments
 

@@ -1,0 +1,38 @@
+<%= form_with(model: @category) do |form| %>
+   <% if @category.errors.any? %>
+    <div class="rounded-md bg-red-50 p-4">
+      <div class="flex">
+        <div class="flex-shrink-0">
+          <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd" />
+          </svg>
+        </div>
+        <div class="ml-3">
+          <h3 class="text-sm font-medium text-red-800"> <%= pluralize(@category.errors.count, "erros") %> proibiram de essa categoria ser salva:</h3>
+          <div class="mt-2 text-sm text-red-700">
+            <ul role="list" class="list-disc space-y-1 pl-5">
+              <% @category.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="border-b border-gray-900/10 pb-12 flex flex-col justify-center">
+    <fieldset class='mt-5'>
+      <legend class="text-xl font-bold ml-6">Cadastro de Categorias
+        <div class="mb-4 w-2/4 ml-6">
+          <%= form.label 'Nome', class: label_classes %>
+          <%= form.text_field :name, class: input_classes %>
+        </div>
+      </legend>
+    </fieldset>
+
+    <div class="mt-6 ml-6 flex items-center justify-start gap-x-6">
+      <%= link_to "Cancelar", categories_path, class: "text-sm font-semibold leading-6 text-gray-900" %>
+      <%= form.submit 'Salvar', class: botoes_azuis %>
+    </div>
+  </div>
+<% end %>
