@@ -1,0 +1,6 @@
+<%= render "customer" %>
+<div class="flex gap-3">
+  <%= link_to "Editar", edit_customer_path(@customer), class: botoes_laranja %>
+  <%= button_to "Deletar", @customer, data: { confirm: "Você tem certeza?", turbo_confirm: "Você tem certeza?" }, method: :delete , class: botoes_vermelhos %>
+  <%= link_to "Voltar", customers_path, class: botoes_azuis %>
+</div>
