@@ -22,15 +22,15 @@
   <% end %>
   <div class="border-b border-gray-900/10 pb-12 flex flex-col justify-center">
     <fieldset class='mt-5'>
-      <legend class="text-xl font-bold ml-6">Cadastro de Categorias
-        <div class="mb-4 w-2/4 ml-6">
+      <legend class="text-xl font-bold">Cadastro de Categorias
+        <div class="mb-4 w-2/4">
           <%= form.label 'Nome', class: label_classes %>
           <%= form.text_field :name, class: input_classes %>
         </div>
       </legend>
     </fieldset>
 
-    <div class="mt-6 ml-6 flex items-center justify-start gap-x-6">
+    <div class="mt-6 flex items-center justify-start gap-x-6">
       <%= link_to "Cancelar", categories_path, class: "text-sm font-semibold leading-6 text-gray-900" %>
       <%= form.submit 'Salvar', class: botoes_azuis %>
     </div>

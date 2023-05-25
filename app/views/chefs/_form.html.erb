@@ -22,70 +22,65 @@
   <% end %>
   <div class="border-b border-gray-900/10 pb-12 flex flex-col justify-center">
     <%= form.hidden_field :approver_id, value: Administrator.first.id %>
-    <fieldset class='mt-5'>
-      <legend class="text-xl font-bold ml-6">Cadastro de Chef</legend>
-      <%= form.fields_for :user_attributes do |user_form| %>
-        <div class="mb-4 w-2/4 ml-6">
+    <h2 class="text-xl font-bold">Cadastro de Chef</h2>
+      <%= form.fields_for :user do |user_form| %>
+        <div class="mb-4 w-2/4 ">
           <%= user_form.label 'Nome', class: label_classes %>
           <%= user_form.text_field :name, class: input_classes %>
         </div>
 
-        <div class="mb-4 w-2/4 ml-6">
+        <div class="mb-4 w-2/4 ">
           <%= user_form.label 'CPF', class: label_classes %>
           <%= user_form.text_field :cpf, class: input_classes %>
         </div>
 
-        <div class="mb-4 w-2/4 ml-6">
+        <div class="mb-4 w-2/4 ">
           <%= user_form.label 'Email', class: label_classes %>
           <%= user_form.text_field :email, class: input_classes %>
         </div>
 
-        <div class="mb-4 w-2/4 ml-6">
+        <div class="mb-4 w-2/4 ">
           <%= user_form.label 'Password', class: label_classes %>
           <%= user_form.password_field :password, class: input_classes %>
         </div>
       <% end %>
-    </fieldset>
 
-    <fieldset class='mt-5'>
-      <legend class="text-xl font-bold ml-6">Endereço</legend>
+      <h2 class="text-xl font-bold ">Endereço</h2>
 
-      <%= form.fields_for :address_attributes do |address_form| %>
-        <div class="mb-4 w-2/4 ml-6">
+      <%= form.fields_for :address do |address_form| %>
+        <div class="mb-4 w-2/4 ">
           <%= address_form.label 'Rua', class: label_classes %>
           <%= address_form.text_field :name, class: input_classes %>
         </div>
 
-        <div class="mb-4 w-2/4 ml-6">
+        <div class="mb-4 w-2/4 ">
           <%= address_form.label 'Número', class: label_classes %>
           <%= address_form.text_field :number, class: input_classes %>
         </div>
 
-        <div class="mb-4 w-2/4 ml-6">
+        <div class="mb-4 w-2/4 ">
           <%= address_form.label 'Bairro', class: label_classes %>
           <%= address_form.text_field :neighborhood, class: input_classes %>
         </div>
 
-        <div class="mb-4 w-2/4 ml-6">
+        <div class="mb-4 w-2/4 ">
           <%= address_form.label 'Logradouro', class: label_classes %>
           <%= address_form.text_field :public_place, class: input_classes %>
         </div>
 
-        <div class="mb-4 w-2/4 ml-6">
+        <div class="mb-4 w-2/4 ">
           <%= address_form.label 'CEP', class: label_classes %>
           <%= address_form.text_field :zip_code, class: input_classes %>
         </div>
 
-        <div class="mb-4 w-2/4 ml-6">
+        <div class="mb-4 w-2/4 ">
           <%= address_form.label 'Cidade', class: label_classes %>
           <br>
           <%= address_form.collection_select(:city_id, City.all, :id, :name, { prompt: 'Selecione...' }, { class: input_classes }) %>
         </div>
 
       <% end %>
-    </fieldset>
-
-    <div class="mt-6 ml-6 flex items-center justify-start gap-x-6">
+    <div class="mt-4 flex items-center justify-start gap-x-6">
       <%= link_to "Cancelar", chefs_path, class: "text-sm font-semibold leading-6 text-gray-900" %>
       <%= form.submit 'Salvar', class: botoes_azuis %>
     </div>

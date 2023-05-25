@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class ChefsController < ApplicationController
-  # skip_before_action :verify_authenticity_token
   before_action :fetch_chef, only: %i[show edit update destroy]
 
   def index
@@ -13,25 +12,28 @@ class ChefsController < ApplicationController
 
   def new
     @chef = Chef.new
+    @chef.build_address
+    @chef.build_user
   end
 
   def edit; end
 
   def create
     @chef = Chef.new(chef_params)
-  
+
     if @chef.save
-      redirect_to chef_url(@chef), notice: "Chef foi criado com sucesso."
+      redirect_to chef_url(@chef), notice: 'Chef foi criado com sucesso.'
     else
       render :new, status: :unprocessable_entity
     end
   end
-  
-  def update
-    @chef = current_user.chefs.find(params[:chef_id])
-    redirect_to @chef, notice: 'Chef foi alterado com sucesso' if @chef.update(chef_params)
 
-    render :edit
+  def update
+    if @chef.update(chef_params)
+      redirect_to @chef, notice: 'Chef foi alterado com sucesso'
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -44,8 +46,9 @@ class ChefsController < ApplicationController
   def chef_params
     params.require(:chef).permit(
       :approver_id,
-      user_attributes: %i[name cpf email password], 
-      address_attributes: %i[name public_place zip_code number neighborhood city_id addressable_type addressable_id])
+      user_attributes: %i[id name cpf email password],
+      address_attributes: %i[id name public_place zip_code number neighborhood city_id addressable_type addressable_id]
+    )
   end
 
   def fetch_chef

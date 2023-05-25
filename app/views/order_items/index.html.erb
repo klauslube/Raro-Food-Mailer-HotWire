@@ -1,2 +1,7 @@
-<h1>OrderItems#index</h1>
-<p>Find me in app/views/order_items/index.html.erb</p>
+<% content_for :titulo do %>
+  <span>
+    Items do Pedido
+  </span>
+<% end %>
+
+<%= render 'table' %>

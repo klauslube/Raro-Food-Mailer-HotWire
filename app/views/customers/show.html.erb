@@ -1,3 +1,8 @@
+<% content_for :titulo do %>
+  <span>
+    Detalhes
+  </span>
+<% end %>
 <%= render "customer" %>
 <div class="flex gap-3">
   <%= link_to "Editar", edit_customer_path(@customer), class: botoes_laranja %>

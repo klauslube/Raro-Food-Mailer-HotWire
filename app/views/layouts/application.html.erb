@@ -18,10 +18,10 @@
        <%= render 'shared/header' %>
       <%# <% end %> 
     
-      <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
       <main>
         <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+          <%= render 'shared/success_notice' %>
           <%= yield %>
         </div>
       </main>

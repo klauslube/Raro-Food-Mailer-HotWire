@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class CategoriesController < ApplicationController
-  skip_before_action :verify_authenticity_token
-  before_action :fetch_category, only: %i[show]
+  before_action :fetch_category, only: %i[show edit update destroy]
 
   def index
     @categories = Category.all
@@ -14,14 +13,24 @@ class CategoriesController < ApplicationController
     @category = Category.new
   end
 
+  def edit; end
+
   def create
-    @category = Category.new(chef_params)
-  
+    @category = Category.new(category_params)
+
     if @category.save
-      redirect_to category_url(@category), notice: "Categoria foi criada com sucesso."
+      redirect_to category_url(@category), notice: 'Categoria foi criada com sucesso.'
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def update
+    redirect_to @category, notice: 'Categoria alterada com sucesso' if @category.update(category_params)
+  end
+
+  def destroy
+    redirect_to categories_path, notice: 'Categoria deletada com sucesso' if @category.destroy
   end
 
   private
@@ -30,8 +39,7 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
   end
 
-  def chef_params
+  def category_params
     params.require(:category).permit(:name)
   end
-
 end
