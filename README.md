@@ -54,6 +54,7 @@ Na aplicação, as rotas e controllers para cada entidade foram criadas na seman
 
 - Foi usado Dbeaver para ter uma visualização melhor dos dados do projeto criado nas seeds.
 
+- Tentei dar uma estilizada básica.
 
 ## Desafios
 
