@@ -24,10 +24,10 @@ Address.create(name: 'Casa', public_place: 'Rua Principal', zip_code: '12345678'
 Address.create(name: 'Trabalho', public_place: 'Avenida Comercial', zip_code: '87654321',
                reference: 'Próximo ao escritório', complement: 'Sala 2', number: '456', neighborhood: 'Bairro Industrial', city_id: 2, addressable_type: 'Chef', addressable_id: 1)
 
-User.create(name: 'Daniel', cpf: '12345678901', email: 'daniel@gmail.com', password: 'password123')
-User.create(name: 'Klaus', cpf: '12378945611', email: 'klaus@gmail.com', password: 'password123')
-User.create(name: 'Rita', cpf: '12378945612', email: 'rita@gmail.com', password: 'password123')
-User.create(name: 'Joao', cpf: '12378945644', email: 'joao@gmail.com', password: 'password123')
+# User.create(name: 'Daniel', cpf: '12345678901', email: 'daniel@gmail.com', password: 'password123')
+User.create(name: 'Klaus', cpf: '12378945611', email: 'klaus@gmail.com', password: '123456')
+# User.create(name: 'Rita', cpf: '12378945612', email: 'rita@gmail.com', password: 'password123')
+# User.create(name: 'Joao', cpf: '12378945644', email: 'joao@gmail.com', password: 'password123')
 
 Administrator.create(user_id: 1)
 
