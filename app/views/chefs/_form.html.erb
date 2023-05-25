@@ -82,8 +82,6 @@
           <%= address_form.collection_select(:city_id, City.all, :id, :name, { prompt: 'Selecione...' }, { class: input_classes }) %>
         </div>
 
-        <%= address_form.hidden_field :addressable_type, value: 'Chef' %>
-        <%= address_form.hidden_field :addressable_id, value: @chef.id %>
       <% end %>
     </fieldset>
 

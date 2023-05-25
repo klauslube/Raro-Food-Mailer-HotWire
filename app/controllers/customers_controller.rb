@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class CustomersController < ApplicationController
-  skip_before_action :verify_authenticity_token
   before_action :fetch_customer_or_payment, only: %i[show edit update destroy]
 
   def index
@@ -13,6 +12,8 @@ class CustomersController < ApplicationController
 
   def new
     @customer = Customer.new
+    @customer.build_user
+    @customer.addresses.build
   end
 
   # def edit; end
@@ -44,8 +45,6 @@ class CustomersController < ApplicationController
   end
 
   def fetch_customer_or_payment
-    @customer = Customer.find(params[:customer_id]) if params.fetch(:customer_id, nil)
-    @payment = Payment.find(params[:payment_id]) if params.fetch(:payment_id, nil)
-    @customer ||= @payment.customer
+    @customer = Customer.find(params[:id])     
   end
 end
