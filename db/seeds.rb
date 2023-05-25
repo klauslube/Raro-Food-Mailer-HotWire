@@ -1,10 +1,22 @@
 # frozen_string_literal: true
 
-State.create(name: 'São Paulo', acronym: 'SP')
-State.create(name: 'Rio de Janeiro', acronym: 'RJ')
+filepath = ENV.fetch('FILEPATH', Rails.root.join('db/states_cities.json').to_s)
+states = JSON.parse(File.read(filepath))
 
-City.create(name: 'São Paulo', state_id: 1)
-City.create(name: 'Rio de Janeiro', state_id: 2)
+states.each do |state|
+  state_obj = State.find_or_create_by(acronym: state['acronym'], name: state['name'])
+
+  state['cities'].each do |city|
+    City.find_or_create_by(name: city['name'], state: state_obj)
+    Rails.logger.debug { "Adicionando a cidade #{city['name']} ao estado #{state_obj.name}" }
+  end
+end
+
+# State.create(name: 'São Paulo', acronym: 'SP')
+# State.create(name: 'Rio de Janeiro', acronym: 'RJ')
+
+# City.create(name: 'São Paulo', state_id: 1)
+# City.create(name: 'Rio de Janeiro', state_id: 2)
 
 Address.create(name: 'Casa', public_place: 'Rua Principal', zip_code: '12345678', reference: 'Próximo ao mercado',
                complement: 'Casa 1', number: '123', neighborhood: 'Centro', city_id: 1, addressable_type: 'Customer', addressable_id: 1)

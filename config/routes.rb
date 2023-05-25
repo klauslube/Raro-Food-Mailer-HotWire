@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  root 'home#index'
+
   resources :chefs, param: :chef_id do
     member do
       resource :address, only: %i[show]

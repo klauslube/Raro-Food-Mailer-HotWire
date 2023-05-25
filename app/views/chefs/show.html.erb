@@ -1,0 +1,6 @@
+<%= render "chef" %>
+<div class="flex gap-3">
+  <%= link_to "Editar", edit_chef_path(@chef), class: botoes_laranja %>
+  <%= button_to "Deletar", @chef, data: { confirm: "Você tem certeza?", turbo_confirm: "Você tem certeza?" }, method: :delete , class: botoes_vermelhos %>
+  <%= link_to "Voltar", chefs_path, class: botoes_azuis %>
+</div>
