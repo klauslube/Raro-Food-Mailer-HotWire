@@ -1,8 +1,8 @@
-# Raro Food - Parte 2 
+# Raro Food - Parte 3
 
-Projeto prático para aulas de Rotas, Controllers, MVC.
+Projeto prático para aulas de Views, MVC.
 
-O projeto tem como o objetivo continuar o projeto raro-food, criando as rotas e controllers necessários.
+O projeto tem como o objetivo continuar o projeto raro-food, criando as views necessárias.
 
 
 ## Setup Inicial
@@ -11,19 +11,28 @@ Antes de iniciar a aplicação, recomenda-se a execução da seguinte sequência
 
 ```
 rvm use 3.1.2
-cd exercicio-semana-10
+cd exercicio-semana-11
 bundle install
+yarn: install
 rails db:create
 rails db:migrate
 rails db:seed
 ```
+Iniciar Servidor com:
+```
+./bin/dev
+```
 
-<br>
+## Login
+Dados de acesso : 
+
+email: klaus@gmail.com
+
+password: 123456
 
 ## Tecnologias Utilizadas
 
 - Rails
-- Insomnia
 - Dbeaver
 - Mysql
 - Rubocop
@@ -32,20 +41,24 @@ rails db:seed
 
 ## Implementações
 
-Na aplicação, as rotas e controllers para cada entidade foram criadas sequencialmente. Cada branch e MR é de uma entidade. 
-- Para as entidades pedidas, foi decidido criar rotas com as actions do CRUD completo, já para entidades que não foram pedidas no enunciado, foi criado apenas as ações necessárias para a rota pedida.
+Na aplicação, as rotas e controllers para cada entidade foram criadas na semana 10 e algumas alteradas para essa parte da atividade.
+- Foi feito a criação das views para o Chefs, Prato, Pedidos, Clientes, Categorias com new, index, show, update e destroy. E Items pedidos apenas com new e index. 
 
-- Também foi criado seeds para facilitar os testes de funcionamento das rotas e controllers, com ajuda de  requests/response feitas no <b>Insomnia</b>.
+- Também foi criado seeds para facilitar os testes de funcionamento das rotas e views.
 
-- Nos controllers foram criadas condições para encaminhar os parametros de acordo com as rotas e actions corretas.
+- A Tela inicial possui uma navbar para melhor usabilidade na criação Chefs,Categorias, etc...
 
-- Nas rotas, foi usado member para ter rotas aninhadas, e teve uso de resources junto com only, em busca de ter menos linhas no código e pensando na escabilidade da aplicação.
+- Foi criado um botão de logout para o usuário poder sair da conta. Para fazer a interação de toggle do menu foi utilizado javascript .
 
-- No controller foi usado callbacks como before_action para certos métodos serem iniciados antes, e o skip_before_action :verify_authenticity_token para skipar a validação de token ao usar o Insomnia no desenvolvimento.
+- No controller foi usado callbacks como before_action para certos métodos serem iniciados antes, e o before_action :authenticate_user! para fazer a autenticação de usuário.
 
 - Foi usado Dbeaver para ter uma visualização melhor dos dados do projeto criado nas seeds.
 
 
+## Desafios
+
+ - Como maior desafio, foi fazer o botao de adicionar item ao pedido, o qual era necessário pegar informações de outras entidades. 
+
 ## Autor
 
-Este projeto foi desenvolvido por Klaus Lube, como parte do exercício semanal da Raro Academy(Professor William Franklin de Souza) para aprimorar as habilidades em Rotas, Controllers, MVC e rails.
+Este projeto foi desenvolvido por Klaus Lube, como parte do exercício semanal da Raro Academy(Professor William Franklin de Souza) para aprimorar as habilidades em Views, MVC e rails.
