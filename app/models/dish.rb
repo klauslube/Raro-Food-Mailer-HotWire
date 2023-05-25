@@ -19,7 +19,9 @@ class Dish < ApplicationRecord
   scope :available, -> { where(available: true) }
   scope :sold, -> { joins(items: :order).where(orders: { status: :finished }) }
   scope :sold_by_dish, ->(dish_id) { where(dishes: { id: dish_id }) }
-
+  
+  accepts_nested_attributes_for :categories
+  
   def can_be_sold?
     active? && available?
   end
