@@ -39,6 +39,6 @@ class OrderItem < ApplicationRecord
   end
 
   def send_order_to_chef
-    ChefMailer.notify_new_item(self).deliver_now
+    ChefMailer.notify_new_item(self).deliver_later
   end
 end
