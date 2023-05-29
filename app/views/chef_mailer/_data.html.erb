@@ -1,0 +1,10 @@
+<p>Código: <%= @order.id %></p>
+<p>Cliente: <%= @order.customer.name %></p>
+<p>Email: <%= @order.customer.user.email %></p>
+<p>Prato: <%= @dish.name %></p>
+<p>Descrição: <%= @dish.description %></p>
+<p>Preço unitário: <%= @dish.unit_price %></p>
+
+<%= link_to "Clique aqui para ver o pedido", order_url(@order) %>
+<br>
+<%= link_to "Clique aqui para ver o prato", dish_url(@dish)  %>
