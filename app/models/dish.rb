@@ -26,11 +26,17 @@ class Dish < ApplicationRecord
     active? && available?
   end
 
+  after_update :update_price, if: :unit_price_changed?
+
   private
 
   def can_unit_price_be_changed?
     return if OrderItem.order_items_by_dishes_on_finished_orders(id).blank?
 
     errors.add(:unit_price, 'unit price cannot be changed')
+  end
+
+  def update_price
+    Dishes::UpdatePriceJob.perform_later(id, unit_price)
   end
 end
