@@ -25,9 +25,14 @@ class DishesController < ApplicationController
   end
 
   def update
-    redirect_to @dish, notice: 'Prato alterado com sucesso' if @dish.update(dish_params)
+    if @dish.update(dish_params)
+      Dishes::UpdatePriceJob.perform_later(@dish.id, dish_params[:unit_price])
+      redirect_to @dish, notice: 'Prato alterado com sucesso'
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
-
+  
   def destroy
     return redirect_to dishes_path, notice: 'Prato deletado com sucesso' if @dish.destroy
   end
