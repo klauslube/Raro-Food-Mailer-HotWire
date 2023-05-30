@@ -48,6 +48,12 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
+# Sidekiq makes every effort to make usage with modern Rails applications as simple as possible
+gem 'sidekiq', '~> 7.1'
+
+# Whenever is a Ruby gem that provides a clear syntax for writing and deploying cron jobs.
+gem 'whenever', require: false
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
