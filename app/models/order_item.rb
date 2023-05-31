@@ -11,7 +11,7 @@ class OrderItem < ApplicationRecord
   before_validation :set_unit_price
   after_destroy :update_order_total_price
   after_save :update_order_total_price
-  after_commit :send_order_to_chef
+  after_create :send_order_to_chef
 
   delegate :active?, :unit_price, to: :dish, prefix: true
 
