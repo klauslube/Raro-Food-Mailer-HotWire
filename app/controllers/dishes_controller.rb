@@ -26,7 +26,6 @@ class DishesController < ApplicationController
 
   def update
     if @dish.update(dish_params)
-      Dishes::UpdatePriceJob.perform_later(@dish.id, dish_params[:unit_price])
       redirect_to @dish, notice: 'Prato alterado com sucesso'
     else
       render :edit, status: :unprocessable_entity

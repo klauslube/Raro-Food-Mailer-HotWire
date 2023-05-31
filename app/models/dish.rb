@@ -8,7 +8,7 @@ class Dish < ApplicationRecord
   has_and_belongs_to_many :categories
 
   has_many :items, class_name: 'OrderItem', dependent: :destroy
-
+  
   validates :name, :description, :unit_price, presence: true
   validates :available, :active, inclusion: [true, false]
   validates :unit_price, numericality: { greater_than: 0 }
@@ -26,7 +26,7 @@ class Dish < ApplicationRecord
     active? && available?
   end
 
-  after_update :update_price, if: :unit_price_changed?
+  after_update :update_price
 
   private
 
@@ -37,6 +37,6 @@ class Dish < ApplicationRecord
   end
 
   def update_price
-    Dishes::UpdatePriceJob.perform_later(id, unit_price)
+    Dishes::UpdatePriceJob.perform_later(id)
   end
 end

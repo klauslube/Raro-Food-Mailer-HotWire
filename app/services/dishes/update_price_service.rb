@@ -8,9 +8,6 @@ module Dishes
 
     def update_dish_price
       dish = Dish.find(@dish_id)
-      old_unit_price = dish.unit_price
-      dish.update(unit_price: @updated_unit_price)
-      
       update_order_price(dish)
     end
 
