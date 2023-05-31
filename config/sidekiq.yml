@@ -1,6 +1,6 @@
 :concurrency: 2
 :daemon: false
-:timeout: 30
+:timeout: 10
 :queues:
   - default
   - dishes
