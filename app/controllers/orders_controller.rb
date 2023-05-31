@@ -41,6 +41,11 @@ class OrdersController < ApplicationController
     redirect_to orders_path, notice: 'Pedido deletado com sucesso' if @order.destroy
   end
 
+  def remove_item
+    @order = Order.find(params[:order_id])
+    @order.order_items.find(params[:item_id]).destroy
+  end
+  
   private
 
   def order_params

@@ -28,11 +28,12 @@
       </div>
 
     <div class="mb-4 w-2/4 ml-6" >
-    <h2 class="text-xl font-bold mb-4">Itens do Pedido</h2>
+      <h2 class="text-xl font-bold mb-4">Itens do Pedido</h2>
       <div id="items">
         <%= render partial: "item", collection: @order.order_items %>
       </div>
       <%= link_to 'Adicionar Item', item_field_orders_path, data: { turbo_stream: true }, class: botoes_azuis %>
+      <%= link_to 'Remover Item', remove_item_field_orders_path(item_id: item.id), data: { turbo_stream: true }, class: botoes_azuis %>
     </div>
 
       <div class="mb-4 w-2/4 ml-6 bg-gray-200 rounded-lg p-3">

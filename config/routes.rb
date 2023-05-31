@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   resources :orders do
     collection do
       get "item_field"
+      delete "remove_item_field"
     end
   end
 
