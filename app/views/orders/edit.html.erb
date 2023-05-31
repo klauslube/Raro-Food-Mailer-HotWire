@@ -29,7 +29,7 @@
 
     <div class="mb-4 w-2/4 ml-6" >
     <h2 class="text-xl font-bold mb-4">Itens do Pedido</h2>
-     <table class="min-w-full divide-y divide-gray-300">
+    <!--<table class="min-w-full divide-y divide-gray-300">
       <thead class="bg-gray-50">
         <tr>
           <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Prato</th>
@@ -47,8 +47,11 @@
         <% end %>
       </tbody>
     </table>
-
-      <%= link_to 'Adicionar Item', new_order_item_path(order_id: @order.id), class: botoes_azuis %>
+    --> 
+      <div id="items">
+        <%= render partial: "item", collection: @order.order_items %>
+      </div>
+      <%= link_to 'Adicionar Item', item_field_orders_path, data: { turbo_stream: true }, class: botoes_azuis %>
     </div>
 
       <div class="mb-4 w-2/4 ml-6 bg-gray-200 rounded-lg p-3">
