@@ -72,6 +72,9 @@
           <%= form.label 'Descrição', class: label_classes %>
           <%= form.rich_text_area :content, class: input_classes %>
         </div>
+
+        <%= form.label :cover_image, 'Anexar Imagem', class: label_classes %>
+        <%= form.file_field :cover_image, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     </fieldset>
 
     <div class="mt-6 flex items-center justify-start gap-x-6">
