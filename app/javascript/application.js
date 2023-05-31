@@ -2,3 +2,5 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import "./context-menu"
+import "trix"
+import "@rails/actiontext"

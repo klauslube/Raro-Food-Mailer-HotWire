@@ -3,13 +3,13 @@
 class Dish < ApplicationRecord
   # Comentado para evitar default_scope
   # default_scope { where(active: true, available: true) }
-
+  has_rich_text :content
   belongs_to :chef
   has_and_belongs_to_many :categories
 
   has_many :items, class_name: 'OrderItem', dependent: :destroy
   
-  validates :name, :description, :unit_price, presence: true
+  validates :name, :content, :unit_price, presence: true
   validates :available, :active, inclusion: [true, false]
   validates :unit_price, numericality: { greater_than: 0 }
   validate :can_unit_price_be_changed?, on: :update, if: proc { unit_price_changed? }
