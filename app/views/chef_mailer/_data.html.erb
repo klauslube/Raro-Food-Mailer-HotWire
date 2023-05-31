@@ -1,10 +1,43 @@
-<p>Código: <%= @order.id %></p>
-<p>Cliente: <%= @order.customer.name %></p>
-<p>Email: <%= @order.customer.user.email %></p>
-<p>Prato: <%= @dish.name %></p>
-<p>Descrição: <%= @dish.description %></p>
-<p>Preço unitário: <%= @dish.unit_price %></p>
+<div>
+  <table>
+    <tr>
+      <td><strong>Código:</strong></td>
+      <td><%= @order.id %></td>
+    </tr>
+    <tr>
+      <td><strong>Cliente:</strong></td>
+      <td><%= @order.customer.name %></td>
+    </tr>
+    <tr>
+      <td><strong>Email:</strong></td>
+      <td><%= @order.customer.user.email %></td>
+    </tr>
+  </table>
+  
+  <div>
+    <table>
+      <% @order.order_items.each do |item| %>
+        <tr>
+          <td><strong>Prato:</strong></td>
+          <td><%= item.dish.name %></td>
+        </tr>
+        <tr>
+          <td><strong>Descrição:</strong></td>
+          <td><%= item.dish.description %></td>
+        </tr>
+        <tr>
+          <td><strong>Quantidade:</strong></td>
+          <td><%= item.amount %></td>
+        </tr>
+        <tr>
+          <td><strong>Preço unitário:</strong></td>
+          <td><%= item.dish.unit_price %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 
-<%= link_to "Clique aqui para ver o pedido", order_url(@order) %>
-<br>
-<%= link_to "Clique aqui para ver o prato", dish_url(@dish)  %>
+  <%= link_to "Clique aqui para ver o pedido", order_url(@order) %>
+  <br>
+  <%= link_to "Clique aqui para ver o prato", dish_url(@dish) %>
+</div>
