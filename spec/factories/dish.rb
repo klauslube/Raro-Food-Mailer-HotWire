@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :dish do
     chef
     name { Faker::Alphanumeric.alpha(number: 30) }
-    description { Faker::Lorem.sentence }
+    content { Faker::Lorem.sentence }
     available { false }
     active { false }
     unit_price { Faker::Commerce.price }
