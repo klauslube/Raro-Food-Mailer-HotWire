@@ -11,6 +11,7 @@ class OrderItem < ApplicationRecord
   before_validation :set_unit_price
   after_destroy :update_order_total_price
   after_save :update_order_total_price
+  after_commit :send_order_to_chef
 
   delegate :active?, :unit_price, to: :dish, prefix: true
 
@@ -35,5 +36,9 @@ class OrderItem < ApplicationRecord
 
   def set_unit_price
     self.unit_price = dish.unit_price.to_f
+  end
+
+  def send_order_to_chef
+    ChefMailer.notify_new_item(self).deliver_later
   end
 end
