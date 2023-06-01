@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 class Dish < ApplicationRecord
-  # Comentado para evitar default_scope
   has_rich_text :content
   has_one_attached :cover_image
   belongs_to :chef
   has_and_belongs_to_many :categories
-
   has_many :items, class_name: 'OrderItem', dependent: :destroy
+
+  after_commit :update_price, on: [:update, :destroy]
   
   validates :name, :content, :unit_price, presence: true
   validates :available, :active, inclusion: [true, false]
@@ -25,8 +25,6 @@ class Dish < ApplicationRecord
   def can_be_sold?
     active? && available?
   end
-
-  after_update :update_price
 
   private
 
