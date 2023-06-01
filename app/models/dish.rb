@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Dish < ApplicationRecord
-  # Comentado para evitar default_scope
   has_rich_text :content
   has_one_attached :cover_image
   belongs_to :chef
