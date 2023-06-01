@@ -23,6 +23,7 @@ class Order < ApplicationRecord
   }, scopes: true, default: :started
 
   validates :status, presence: { in: %i[started request preparing sent delivered finished canceled] }
+  
   validates :total_price, numericality: { is_greater_than_or_equal_to: 0 }, on: :update
 
   accepts_nested_attributes_for :delivery_address, :items, allow_destroy: true

@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @order.items.build
   end
 
   def edit; end
@@ -40,10 +41,22 @@ class OrdersController < ApplicationController
     redirect_to orders_path, notice: 'Pedido deletado com sucesso' if @order.destroy
   end
 
+  def remove_item
+    @order = Order.find(params[:order_id])
+    @order.order_items.find(params[:item_id]).destroy
+  end
+  
   private
 
   def order_params
-    params.require(:order).permit(:customer_id, :delivery_address_id, :total_price, :freight_price, :status, :coupon_id)
+    params.require(:order).permit(:customer_id,
+                                  :delivery_address_id,
+                                  :total_price,
+                                  :freight_price,
+                                  :status,
+                                  :coupon_id,
+                                  items_attributes: [:id, :dish_id, :amount, :unit_price]
+                                )
   end
 
   def fetch_order

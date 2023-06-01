@@ -4,6 +4,9 @@ class OrderItem < ApplicationRecord
   belongs_to :order
   belongs_to :dish
 
+  validates :dish_id, presence: true
+  # validates :amount, presence: true, numericality: { greater_than: 0 }
+
   validates :amount, numericality: { only_integer: true, minimum: 1 }
   validates :unit_price, numericality: { greater_than: 0 }
   validate :can_add_item?, on: :create

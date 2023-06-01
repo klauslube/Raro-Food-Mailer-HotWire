@@ -31,7 +31,12 @@ Rails.application.routes.draw do
 
   resources :customers
 
-  resources :orders
+  resources :orders do
+    collection do
+      get "item_field"
+      delete "remove_item_field"
+    end
+  end
 
   resources :order_items
 
