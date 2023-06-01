@@ -48,6 +48,7 @@ password: 123456
 - ActionText
 - ActionStorage
 - EmailCatcher
+- Sidekiq
 <br>
 
 ## Implementações
