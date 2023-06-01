@@ -2,7 +2,6 @@
 
 class Dish < ApplicationRecord
   # Comentado para evitar default_scope
-  # default_scope { where(active: true, available: true) }
   has_rich_text :content
   has_one_attached :cover_image
   belongs_to :chef
