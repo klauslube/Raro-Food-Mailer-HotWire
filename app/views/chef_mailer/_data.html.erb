@@ -29,5 +29,5 @@
   <span><%= link_to "Clique aqui para ver o pedido", order_url(@order) %></span>
   <br>
   <br>
-  <span><%= link_to "Clique aqui para ver o prato", dish_url(@dish) %></span>
+  <span><%= link_to "Clique aqui para ver o prato: #{@dish.name}", dish_url(@dish) %></span>
 </div>
