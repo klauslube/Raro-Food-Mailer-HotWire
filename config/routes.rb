@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'sidekiq/web'
 
 Rails.application.routes.draw do
   devise_for :users, controllers: {
@@ -33,4 +34,6 @@ Rails.application.routes.draw do
   resources :orders
 
   resources :order_items
+
+  mount Sidekiq::Web => '/sidekiq'
 end

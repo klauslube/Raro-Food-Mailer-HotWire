@@ -8,7 +8,7 @@ class Dish < ApplicationRecord
   has_and_belongs_to_many :categories
 
   has_many :items, class_name: 'OrderItem', dependent: :destroy
-
+  
   validates :name, :description, :unit_price, presence: true
   validates :available, :active, inclusion: [true, false]
   validates :unit_price, numericality: { greater_than: 0 }
@@ -26,11 +26,17 @@ class Dish < ApplicationRecord
     active? && available?
   end
 
+  after_update :update_price
+
   private
 
   def can_unit_price_be_changed?
     return if OrderItem.order_items_by_dishes_on_finished_orders(id).blank?
 
     errors.add(:unit_price, 'unit price cannot be changed')
+  end
+
+  def update_price
+    Dishes::UpdatePriceJob.perform_later(id)
   end
 end
