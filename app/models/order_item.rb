@@ -5,7 +5,7 @@ class OrderItem < ApplicationRecord
   belongs_to :dish
 
   validates :dish_id, presence: true
-  # validates :amount, presence: true, numericality: { greater_than: 0 }
+  validates :amount, presence: true, numericality: { greater_than: 0 }
 
   validates :amount, numericality: { only_integer: true, minimum: 1 }
   validates :unit_price, numericality: { greater_than: 0 }
@@ -14,7 +14,7 @@ class OrderItem < ApplicationRecord
   before_validation :set_unit_price
   after_destroy :update_order_total_price
   after_save :update_order_total_price
-  after_create :send_order_to_chef
+  after_commit :send_order_to_chef, on: :create
 
   delegate :active?, :unit_price, to: :dish, prefix: true
 
